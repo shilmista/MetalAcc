@@ -9,10 +9,10 @@
  AccColorInvertFilter: Inverts the colors of an image
  */
 public class AccColorInvertFilter: AccImageFilter {
-    public init(){
+    public init() {
         super.init(name: "ColorInvert")
     }
-    override public func getFactors()->[Float]{
+    override public func getFactors() -> [Float] {
         return []
     }
 }

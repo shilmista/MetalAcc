@@ -7,12 +7,12 @@
 //
 
 public class AccFalseColorFilter: AccImageFilter {
-    public var firstColor:(R:Float,G:Float,B:Float) = (0.0, 0.0, 0.5)
-    public var secondColor:(R:Float,G:Float,B:Float) = (1.0, 0.0, 0.0)
-    public init(){
+    public var firstColor:(R: Float, G: Float, B: Float) = (0.0, 0.0, 0.5)
+    public var secondColor:(R: Float, G: Float, B: Float) = (1.0, 0.0, 0.0)
+    public init() {
         super.init(name: "FalseColor")
     }
-    override public func getFactors()->[Float]{
-        return [firstColor.R,firstColor.G,firstColor.B,secondColor.R,secondColor.G,secondColor.B]
+    override public func getFactors() -> [Float] {
+        return [firstColor.R, firstColor.G, firstColor.B, secondColor.R, secondColor.G, secondColor.B]
     }
 }

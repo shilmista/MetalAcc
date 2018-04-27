@@ -7,18 +7,23 @@
 //
 
 import MetalKit
-public extension MTLTexture{
+public extension MTLTexture {
     
-    public func sameSizeEmptyTexture() -> MTLTexture{
+    public func sameSizeEmptyTexture() -> MTLTexture? {
         let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(pixelFormat: pixelFormat, width: width, height: height, mipmapped: false)
-        return MTLCreateSystemDefaultDevice()!.makeTexture(descriptor: textureDescriptor)!
+        if let device = MTLCreateSystemDefaultDevice() {
+            return device.makeTexture(descriptor: textureDescriptor)
+        }
+        else {
+            return .none
+        }
     }
     
-    public func threadGroups() -> MTLSize{
+    public func threadGroups() -> MTLSize {
         let groupCount = threadGroupCount()
         return MTLSizeMake(Int(width) / groupCount.width, Int(height) / groupCount.height, 1)
     }
-    public func threadGroupCount() -> MTLSize{
+    public func threadGroupCount() -> MTLSize {
         return MTLSizeMake(16, 16, 1)
     }
     
@@ -35,8 +40,8 @@ public extension MTLTexture{
         
         let grayColorSpace = CGColorSpaceCreateDeviceRGB()
         let bitsPerComponent = 8
-        let context = CGContext(data: &src, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: grayColorSpace, bitmapInfo: bitmapInfo.rawValue)!
-        if let dstImageFilter = context.makeImage() {
+        let context = CGContext(data: &src, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: grayColorSpace, bitmapInfo: bitmapInfo.rawValue)
+        if let dstImageFilter = context?.makeImage() {
             return UIImage(cgImage: dstImageFilter, scale: 0.0, orientation: UIImageOrientation.downMirrored)
         }
         else {

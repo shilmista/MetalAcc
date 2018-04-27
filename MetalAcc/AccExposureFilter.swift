@@ -10,11 +10,12 @@
  - exposure: The adjusted exposure (-10.0 - 10.0, with 0.0 as the default)
  */
 public class AccExposureFilter: AccImageFilter {
-    public var exposure:Float = 0.0
-    public init(){
+    public var exposure: Float = 0.0
+    public init() {
         super.init(name: "Exposure")
     }
-    override public func getFactors()->[Float]{
+
+    override public func getFactors() -> [Float] {
         return [exposure]
     }
 }

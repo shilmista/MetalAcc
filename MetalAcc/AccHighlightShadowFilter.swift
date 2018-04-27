@@ -6,13 +6,12 @@
 //  Copyright © 2016年 JW. All rights reserved.
 //
 public class AccHighlightShadowFilter: AccImageFilter {
-    var shadows:Float = 0.0
-    var highlights:Float = 1.0
-    
-    public init(){
+    var shadows: Float = 0.0
+    var highlights: Float = 1.0
+    public init() {
         super.init(name: "HighlightShadow")
     }
-    override public func getFactors()->[Float]{
-        return [shadows,highlights]
+    override public func getFactors() -> [Float] {
+        return [shadows, highlights]
     }
 }

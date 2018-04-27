@@ -7,11 +7,11 @@
 //
 
 public class AccOpacityFilter: AccImageFilter {
-    public var opacity:Float = 1.0
-    public init(){
+    public var opacity: Float = 1.0
+    public init() {
         super.init(name: "Opacity")
     }
-    override public func getFactors()->[Float]{
+    override public func getFactors() -> [Float] {
         return [opacity]
     }
 }

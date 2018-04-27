@@ -7,11 +7,11 @@
 //
 
 public class AccLookupFilter: AccImageFilter {
-    public var intensity:Float = 1.0
-    public init(){
+    public var intensity: Float = 1.0
+    public init() {
         super.init(name: "Lookup")
     }
-    override public func getFactors()->[Float]{
+    override public func getFactors() -> [Float] {
         return [intensity]
     }
 }

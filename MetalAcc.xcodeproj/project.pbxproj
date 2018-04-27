@@ -31,7 +31,6 @@
 		28DF682A1CC72B6400E79EB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28DF68271CC72B6400E79EB0 /* Main.storyboard */; };
 		28DF682F1CC72B6D00E79EB0 /* AnimalImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 28DF682B1CC72B6D00E79EB0 /* AnimalImage.png */; };
 		28DF68301CC72B6D00E79EB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF682C1CC72B6D00E79EB0 /* AppDelegate.swift */; };
-		28DF68311CC72B6D00E79EB0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28DF682D1CC72B6D00E79EB0 /* Info.plist */; };
 		28DF68321CC72B6D00E79EB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DF682E1CC72B6D00E79EB0 /* ViewController.swift */; };
 		28DF68391CC72C3300E79EB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DF68381CC72C3300E79EB0 /* Images.xcassets */; };
 		28F8F8341CC719DA009D8528 /* AccLuminanceFilter.metal in Sources */ = {isa = PBXBuildFile; fileRef = 28F8F8321CC719DA009D8528 /* AccLuminanceFilter.metal */; };
@@ -240,6 +239,7 @@
 				28A112221CC61DC000658DC4 /* Sources */,
 				28A112231CC61DC000658DC4 /* Frameworks */,
 				28A112241CC61DC000658DC4 /* Resources */,
+				9BB775BF2093890700BA9E25 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -289,7 +289,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28DF68311CC72B6D00E79EB0 /* Info.plist in Resources */,
 				28DF682F1CC72B6D00E79EB0 /* AnimalImage.png in Resources */,
 				28DF68291CC72B6400E79EB0 /* LaunchScreen.storyboard in Resources */,
 				28DF68391CC72C3300E79EB0 /* Images.xcassets in Resources */,
@@ -298,6 +297,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9BB775BF2093890700BA9E25 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		28A112221CC61DC000658DC4 /* Sources */ = {

@@ -7,21 +7,24 @@
 //
 
 import MetalKit
-public class AccImageFilter{
-    public var pipelineState:MTLComputePipelineState?
-    public var name:String?
+public class AccImageFilter {
+    public var pipelineState: MTLComputePipelineState?
+    public var name: String?
     
-    public init(name:String){
+    public init(name: String) {
         self.name = name
         if let device = MTLCreateSystemDefaultDevice() {
-            self.pipelineState = device.newComputePipelineStateWithName(functionName:name)
+            self.pipelineState = device.newComputePipelineStateWithName(functionName: name)
         }
     }
     
-    public func updatePipeline(){
+    public func updatePipeline() {
         if let name = name, let device = MTLCreateSystemDefaultDevice() {
-            self.pipelineState = device.newComputePipelineStateWithName(functionName:name)
+            self.pipelineState = device.newComputePipelineStateWithName(functionName: name)
         }
     }
-    public func getFactors()->[Float]{return []}
+
+    public func getFactors() -> [Float] {
+        return []
+    }
 }

@@ -7,18 +7,19 @@
 //
 
 import MetalKit
-public extension MTLCommandQueue{
-    public func addAccCommand<T>(pipelineState:MTLComputePipelineState,textures:[MTLTexture],factors:[T]){
+public extension MTLCommandQueue {
+
+    public func addAccCommand<T>(pipelineState: MTLComputePipelineState, textures: [MTLTexture], factors: [T]) {
         
         if let commandBuffer = self.makeCommandBuffer(), let commandEncoder = commandBuffer.makeComputeCommandEncoder() {
             commandEncoder.setComputePipelineState(pipelineState)
 
-            for i in 0..<textures.count{
+            for i in 0..<textures.count {
                 commandEncoder.setTexture(textures[i], index: i)
             }
 
             if let device = MTLCreateSystemDefaultDevice() {
-                for i in 0..<factors.count{
+                for i in 0..<factors.count {
                     var factor = factors[i]
                     let size = max(MemoryLayout.size(ofValue: i), 16)
                     let buffer = device.makeBuffer(bytes: &factor, length: size, options: [MTLResourceOptions.storageModeShared])

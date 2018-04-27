@@ -12,12 +12,11 @@
 */
 
 public class AccBrightnessFilter: AccImageFilter {
-    public var brightness:Float = 0.0
-    public init(){
+    public var brightness: Float = 0.0
+    public init() {
         super.init(name: "Brightness")
     }
-    override public func getFactors()->[Float]{
+    override public func getFactors() -> [Float] {
         return [brightness]
     }
 }
-

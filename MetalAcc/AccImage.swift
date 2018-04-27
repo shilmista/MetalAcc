@@ -8,13 +8,13 @@
 
 import MetalKit
 import ImageIO
-public class AccImage{
+public class AccImage {
 
     private var commandQueue: MTLCommandQueue?
     private var textures = [MTLTexture]()
     public var filter: AccImageFilter?
     
-    init(){
+    init() {
         if let defaultDevice = MTLCreateSystemDefaultDevice() {
             if let commandQueue = defaultDevice.makeCommandQueue() {
                 self.commandQueue = commandQueue
@@ -22,12 +22,17 @@ public class AccImage{
         }
     }
     
-    public func Input(image: UIImage) {
-        if let texture = image.toMTLTexture() {
-            if textures.isEmpty {
-                textures.append(texture.sameSizeEmptyTexture())//outTexture
+    public func Input(image: UIImage?) {
+        guard image != .none else {
+            return
+        }
+        if let image = image {
+            if let texture = image.toMTLTexture() {
+                if textures.isEmpty, let empty = texture.sameSizeEmptyTexture() {
+                    textures.append(empty)//outTexture
+                }
+                textures.append(texture)
             }
-            textures.append(texture)
         }
     }
     
@@ -35,7 +40,7 @@ public class AccImage{
         self.filter = filter
     }
     
-    public func Processing(){
+    public func Processing() {
         if let filter = filter, let pipeline = filter.pipelineState {
             commandQueue?.addAccCommand(pipelineState: pipeline, textures: textures, factors: filter.getFactors())
         }

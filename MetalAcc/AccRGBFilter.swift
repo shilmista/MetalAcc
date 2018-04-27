@@ -12,11 +12,11 @@
 */
 
 public class AccRGBFilter: AccImageFilter {
-    public var color:(R:Float,G:Float,B:Float) = (1.0,1.0,1.0)
-    public init(){
+    public var color:(R:Float, G: Float, B: Float) = (1.0, 1.0, 1.0)
+    public init() {
         super.init(name: "RGB")
     }
-    override public func getFactors()->[Float]{
-        return [color.R,color.G,color.B]
+    override public func getFactors() -> [Float] {
+        return [color.R, color.G, color.B]
     }
 }

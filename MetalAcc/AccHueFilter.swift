@@ -11,11 +11,11 @@
  - hue: The hue angle, in degrees. 90 degrees by default
 */
 public class AccHueFilter: AccImageFilter {
-    public var hue:Float = 90.0
-    public init(){
+    public var hue: Float = 90.0
+    public init() {
         super.init(name: "Hue")
     }
-    override public func getFactors()->[Float]{
+    override public func getFactors() -> [Float] {
         return [hue]
     }
 }

@@ -14,10 +14,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //load image from resources folder
-        let inimage = UIImage(named: "AnimalImage")!
+        let inimage = UIImage(named: "AnimalImage")
         
         let imageview = UIImageView()
-        imageview.frame = CGRect(x: 0.0, y: 40 , width: 250, height: 200)
+        imageview.contentMode = .scaleAspectFit
+        imageview.frame = view.bounds
         
         //create AccImage
         let accImage = AccImage()
@@ -46,4 +47,3 @@ class ViewController: UIViewController {
 
 
 }
-

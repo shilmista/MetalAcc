@@ -7,16 +7,17 @@
 //
 
 import MetalKit
-public extension MTLDevice{
-    public func newComputePipelineStateWithName(functionName:String) -> MTLComputePipelineState{
+public extension MTLDevice {
+    public func newComputePipelineStateWithName(functionName: String) -> MTLComputePipelineState? {
         let library = self.makeDefaultLibrary()
-        let function = library?.makeFunction(name: functionName)!
-        do {
-            let pipelineState = try self.makeComputePipelineState(function: function!)
-            return pipelineState
+        if let function = library?.makeFunction(name: functionName) {
+            do {
+                let pipelineState = try self.makeComputePipelineState(function: function)
+                return pipelineState
+            } catch {
+                fatalError("Unable to setup Metal")
+            }
         }
-        catch {
-            fatalError("Unable to setup Metal")
-        }
+        return .none
     }
 }
