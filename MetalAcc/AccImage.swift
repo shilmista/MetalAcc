@@ -10,31 +10,41 @@ import MetalKit
 import ImageIO
 public class AccImage{
 
-    private var commandQueue:MTLCommandQueue
+    private var commandQueue: MTLCommandQueue?
     private var textures = [MTLTexture]()
-    public var filter:AccImageFilter?
+    public var filter: AccImageFilter?
     
     init(){
-        self.commandQueue = MTLCreateSystemDefaultDevice()!.newCommandQueue()
-    }
-    
-    public func Input(image:UIImage){
-        let texture = image.toMTLTexture()
-        if(textures.isEmpty==true){
-            textures.append(texture.sameSizeEmptyTexture())//outTexture
+        if let defaultDevice = MTLCreateSystemDefaultDevice() {
+            if let commandQueue = defaultDevice.makeCommandQueue() {
+                self.commandQueue = commandQueue
+            }
         }
-        textures.append(texture)
     }
     
-    public func AddProcessor(filter:AccImageFilter){
+    public func Input(image: UIImage) {
+        if let texture = image.toMTLTexture() {
+            if textures.isEmpty {
+                textures.append(texture.sameSizeEmptyTexture())//outTexture
+            }
+            textures.append(texture)
+        }
+    }
+    
+    public func AddProcessor(filter: AccImageFilter) {
         self.filter = filter
     }
     
     public func Processing(){
-        self.commandQueue.addAccCommand((self.filter!.pipelineState!), textures: textures, factors: self.filter!.getFactors())
+        if let filter = filter, let pipeline = filter.pipelineState {
+            commandQueue?.addAccCommand(pipelineState: pipeline, textures: textures, factors: filter.getFactors())
+        }
     }
-    public func Output()->UIImage{
-        let image = textures[0].toImage()
-        return image
+    public func Output() -> UIImage? {
+        if textures.count > 0 {
+            let image = textures[0].toImage()
+            return image
+        }
+        return .none
     }
 }

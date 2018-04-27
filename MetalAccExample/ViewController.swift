@@ -23,10 +23,10 @@ class ViewController: UIViewController {
         let accImage = AccImage()
         
         //Input resource
-        accImage.Input(inimage)
+        accImage.Input(image: inimage)
         
         //Add filter
-        accImage.AddProcessor(AccBrightnessFilter())
+        accImage.AddProcessor(filter: AccFalseColorFilter())
         
         //Process
         accImage.Processing()

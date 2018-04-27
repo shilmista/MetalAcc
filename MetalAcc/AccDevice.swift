@@ -9,10 +9,10 @@
 import MetalKit
 public extension MTLDevice{
     public func newComputePipelineStateWithName(functionName:String) -> MTLComputePipelineState{
-        let library = self.newDefaultLibrary()!
-        let function = library.newFunctionWithName(functionName)!
+        let library = self.makeDefaultLibrary()
+        let function = library?.makeFunction(name: functionName)!
         do {
-            let pipelineState = try self.newComputePipelineStateWithFunction(function)
+            let pipelineState = try self.makeComputePipelineState(function: function!)
             return pipelineState
         }
         catch {

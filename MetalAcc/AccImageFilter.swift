@@ -13,11 +13,15 @@ public class AccImageFilter{
     
     public init(name:String){
         self.name = name
-        self.pipelineState = MTLCreateSystemDefaultDevice()!.newComputePipelineStateWithName(self.name!)
+        if let device = MTLCreateSystemDefaultDevice() {
+            self.pipelineState = device.newComputePipelineStateWithName(functionName:name)
+        }
     }
     
     public func updatePipeline(){
-        self.pipelineState = MTLCreateSystemDefaultDevice()!.newComputePipelineStateWithName(self.name!)
+        if let name = name, let device = MTLCreateSystemDefaultDevice() {
+            self.pipelineState = device.newComputePipelineStateWithName(functionName:name)
+        }
     }
     public func getFactors()->[Float]{return []}
 }
